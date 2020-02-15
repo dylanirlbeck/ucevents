@@ -4,7 +4,7 @@ import { gql } from "apollo-boost";
 
 const ALL_EVENTS = gql`
   {
-    getAllEvents {
+    events {
       name
       description
     }
