@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <nav class="flex items-center justify-between flex-wrap bg-white-800 p-6">
       <div class="flex items-center flex-shrink-0 text-red mr-6">
@@ -35,6 +35,12 @@ const Navigation = () => {
             class="block mt-4 lg:inline-block lg:mt-0 text-red-800 hover:text-red-900 mr-4">
             About Us
           </a>
+          <button
+            target="_blank"
+            class="block mt-4 lg:inline-block lg:mt-0 text-red-800 hover:text-red-900 mr-4"
+            onClick={props.onClick}>
+            Create Event
+          </button>
         </div>
       </div>
     </nav>
