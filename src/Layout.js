@@ -96,10 +96,11 @@ const Layout = () => {
               return (
                 <Tag
                   key={idx}
+                  isActive={tag == activeTag}
                   name={tag}
                   onClick={e => {
                     e.preventDefault();
-                    setActiveTag(tag);
+                    setActiveTag(tag == activeTag ? null : tag);
                     setEvents([]);
                   }}
                 />
