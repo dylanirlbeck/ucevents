@@ -26,7 +26,7 @@ const Event = props => {
       />
       <div class="px-6 py-4">
         <div className="mb-2 text-xl font-bold">
-          <span className="inline-block w-full font-semibold text-gray-700 truncate whitespace-no-wrap">
+          <span className="inline-block w-full font-semibold text-red-800 truncate whitespace-no-wrap">
             {name}
           </span>
         </div>
