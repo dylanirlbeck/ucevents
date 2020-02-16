@@ -13,9 +13,9 @@ Modal.setAppElement("#root");
 const ALL_EVENTS = gql`
   {
     events {
+      id
       name
       tags
-      description
       time {
         start
         end
@@ -27,9 +27,9 @@ const ALL_EVENTS = gql`
 const EVENTS_BY_TAG = gql`
   query getEventsByTag($tags: [String!]) {
     eventsByTags(tags: $tags) {
+      id
       name
       tags
-      description
       time {
         start
         end
@@ -45,6 +45,7 @@ const ALL_TAGS = gql`
 `;
 
 const Layout = () => {
+  const [selectedEvent, setSelectedEvent] = React.useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [activeTag, setActiveTag] = React.useState(null);
   const [events, setEvents] = React.useState([]);
@@ -52,13 +53,9 @@ const Layout = () => {
     setIsOpen(true);
   };
 
-  const afterOpenModal = () => {
-    // IDK what this does
-    //    subtitle.style.color = "#f00";
-  };
-
   const closeModal = () => {
     setIsOpen(false);
+    setSelectedEvent(null);
   };
 
   const document = activeTag == null ? ALL_EVENTS : EVENTS_BY_TAG;
@@ -76,17 +73,22 @@ const Layout = () => {
   if (events.length == 0) {
     setEvents(data.eventsByTags ? data.eventsByTags : data.events);
   }
+  //console.log("EVENTS" + JSON.stringify(events));
   return (
     <div className="content-center justify-center">
       <Navigation />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
-          {events.map(({ name, tags }) => (
+          {events.map(({ name, id, tags }) => (
             <Event
-              key={name}
+              key={id}
               name={name}
               tags={tags}
-              onClick={_ => setIsOpen(true)}
+              onClick={_ => {
+                openModal();
+                console.log("ONCLICKEVENT");
+                setSelectedEvent(id);
+              }}
             />
           ))}
         </div>
@@ -108,7 +110,16 @@ const Layout = () => {
           </ul>
         </div>
       </div>
-      <EventModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      {modalIsOpen ? (
+        <EventModal
+          id={selectedEvent}
+          modalIsOpen={true}
+          closeModal={closeModal}
+        />
+      ) : (
+        React.null
+      )}
+      }
     </div>
   );
 };
