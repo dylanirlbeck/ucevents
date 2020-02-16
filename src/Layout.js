@@ -75,7 +75,6 @@ const Layout = () => {
   if (events.length == 0) {
     setEvents(data.eventsByTags ? data.eventsByTags : data.events);
   }
-  //console.log("EVENTS" + JSON.stringify(events));
   return (
     <div className="content-center justify-center">
       <Navigation />

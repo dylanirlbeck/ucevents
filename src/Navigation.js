@@ -30,12 +30,8 @@ const Navigation = () => {
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
           <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-red-800 hover:text-red-900 mr-4">
-            Event Tags
-          </a>
-          <a
-            href="#responsive-header"
+            href="https://devpost.com/software/ucevents-qmlcfz"
+            target="_blank"
             class="block mt-4 lg:inline-block lg:mt-0 text-red-800 hover:text-red-900 mr-4">
             About Us
           </a>
