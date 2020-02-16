@@ -35,11 +35,6 @@ const Navigation = () => {
             class="block mt-4 lg:inline-block lg:mt-0 text-red-800 hover:text-red-900 mr-4">
             About Us
           </a>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-red-800 hover:text-red-900">
-            Featured Events
-          </a>
         </div>
       </div>
     </nav>
