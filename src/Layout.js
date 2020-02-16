@@ -24,10 +24,30 @@ const ALL_EVENTS = gql`
   }
 `;
 
-const Layout = () => {
-  const { loading, error, data } = useQuery(ALL_EVENTS);
+const EVENTS_BY_TAG = gql`
+  query getEventsByTag($tags: [String!]) {
+    eventsByTags(tags: $tags) {
+      name
+      tags
+      description
+      time {
+        start
+        end
+      }
+    }
+  }
+`;
 
+const ALL_TAGS = gql`
+  {
+    tags
+  }
+`;
+
+const Layout = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [activeTag, setActiveTag] = React.useState(null);
+  const [events, setEvents] = React.useState([]);
   const openModal = () => {
     setIsOpen(true);
   };
@@ -41,24 +61,50 @@ const Layout = () => {
     setIsOpen(false);
   };
 
-  // TODO: render a loading icon
-  if (loading) return <p>Loading...</p>;
-  // TODO: render something better
-  if (error) return <p>Error :(</p>;
+  const document = activeTag == null ? ALL_EVENTS : EVENTS_BY_TAG;
+  const variablesObject =
+    activeTag == null
+      ? { variables: {} }
+      : { variables: { tags: [activeTag] } };
+  const { loading, error, data } = useQuery(document, variablesObject);
+  const tagObj = useQuery(ALL_TAGS);
 
+  // TODO: render a loading icon
+  if (loading || tagObj.loading) return <p>Loading...</p>;
+  // TODO: render something better
+  if (error || tagObj.error) return <p>Error :(</p>;
+  if (events.length == 0) {
+    setEvents(data.eventsByTags ? data.eventsByTags : data.events);
+  }
   return (
     <div className="content-center justify-center">
       <Navigation />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
-          {data.events.map(({ name, tags }) => (
-            <Event name={name} tags={tags} onClick={_ => setIsOpen(true)} />
+          {events.map(({ name, tags }) => (
+            <Event
+              key={name}
+              name={name}
+              tags={tags}
+              onClick={_ => setIsOpen(true)}
+            />
           ))}
         </div>
         <div className="fixed absolute right-0 w-64">
           <ul className="fixed flex flex-col">
-            <Tag name="testing123" />
-            <Tag name="testing456" />
+            {tagObj.data.tags.map((tag, idx) => {
+              return (
+                <Tag
+                  key={idx}
+                  name={tag}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTag(tag);
+                    setEvents([]);
+                  }}
+                />
+              );
+            })}
           </ul>
         </div>
       </div>
