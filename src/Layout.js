@@ -95,11 +95,12 @@ const Layout = () => {
             {tagObj.data.tags.map((tag, idx) => {
               return (
                 <Tag
+                  isActive={tag == activeTag}
                   key={idx}
                   name={tag}
                   onClick={e => {
                     e.preventDefault();
-                    setActiveTag(tag);
+                    setActiveTag(tag == activeTag ? null : tag);
                     setEvents([]);
                   }}
                 />
