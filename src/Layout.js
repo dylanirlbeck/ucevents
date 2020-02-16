@@ -24,8 +24,15 @@ const ALL_EVENTS = gql`
   }
 `;
 
+const ALL_TAGS = gql`
+  {
+    tags
+  }
+`;
+
 const Layout = () => {
   const { loading, error, data } = useQuery(ALL_EVENTS);
+  const tagObj = useQuery(ALL_TAGS);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const openModal = () => {
@@ -42,9 +49,9 @@ const Layout = () => {
   };
 
   // TODO: render a loading icon
-  if (loading) return <p>Loading...</p>;
+  if (loading || tagObj.loading) return <p>Loading...</p>;
   // TODO: render something better
-  if (error) return <p>Error :(</p>;
+  if (error || tagObj.error) return <p>Error :(</p>;
 
   return (
     <div className="content-center justify-center">
@@ -57,8 +64,9 @@ const Layout = () => {
         </div>
         <div className="fixed absolute right-0 w-64">
           <ul className="fixed flex flex-col">
-            <Tag name="testing123" />
-            <Tag name="testing456" />
+            {tagObj.data.tags.map((tag, idx) => {
+              return <Tag key={idx} name={tag} />;
+            })}
           </ul>
         </div>
       </div>
