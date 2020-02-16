@@ -16,7 +16,7 @@ const Event = props => {
   return (
     <div
       onClick={onClick}
-      className="max-w-sm overflow-hidden rounded shadow-lg hover:bg-red-200">
+      className="max-w-sm overflow-hidden rounded shadow-lg cursor-pointer hover:bg-red-200">
       <img className="w-full" src={img} />
       <div class="px-6 py-4">
         <div className="mb-2 text-xl font-bold">

@@ -48,23 +48,27 @@ const EventModal = props => {
       onRequestClose={closeModal}
       className="relative z-10 flex items-center justify-center bg-red-200">
       overlayClassName="EventModalOverlay"
-      <div className="flex flex-grow w-full overflow-hidden EventModalContainer">
+      <div className="flex flex-grow w-full overflow-hidden bg-white EventModalContainer">
         <div className="w-full h-full">
           <div className="h-full">
             {loading ? (
               <p>Loading...</p>
             ) : (
-              <div className="flex flex-col px-6 py-8">
-                <h2 class="mt-0 mb-2 text-red-700 text-bold text-3xl">
+              <div className="flex flex-col h-20 px-6 py-8">
+                <h2 class="mt-0 mb-2 text-red-800 text-bold text-3xl">
                   {data.event.name}
                 </h2>
-                <p className="text-s">{data.event.description}</p>
-                <p className="text-s">
-                  Start: {new Date(data.event.time.start).toDateString()}
+                <p className="h-48 text-gray-600 text-s">
+                  {data.event.description}
                 </p>
-                <p className="text-s">
-                  End: {new Date(data.event.time.end).toDateString()}
-                </p>
+                <div className="mt-3">
+                  <p className="font-bold text-gray-700 text-md">
+                    Start: {new Date(data.event.time.start).toDateString()}
+                  </p>
+                  <p className="font-bold text-gray-700 text-md">
+                    End: {new Date(data.event.time.end).toDateString()}
+                  </p>
+                </div>
               </div>
             )}
           </div>
