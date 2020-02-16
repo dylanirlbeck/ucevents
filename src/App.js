@@ -6,7 +6,7 @@ import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
 
 const client = new ApolloClient({
-  uri: "http://campus-outlook.herokuapp.com",
+  uri: "https://campus-outlook.herokuapp.com",
 });
 
 client
