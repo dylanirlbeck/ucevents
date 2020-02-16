@@ -12,12 +12,18 @@ const Tag = props => {
 
 const Event = props => {
   // Destructure props
-  const { name, tags, onClick } = props;
+  const { name, tags, date, image, onClick } = props;
   return (
     <div
       onClick={onClick}
-      className="max-w-sm overflow-hidden rounded shadow-lg hover:bg-red-200">
-      <img className="w-full" src={img} />
+      className="max-w-sm overflow-hidden rounded shadow-lg cursor-pointer hover:bg-red-200">
+      <img
+        className="w-full"
+        src={image}
+        height={200}
+        width={350}
+        style={{ height: 200, width: 350 }}
+      />
       <div class="px-6 py-4">
         <div className="mb-2 text-xl font-bold">
           <span className="inline-block w-full font-semibold text-gray-700 truncate whitespace-no-wrap">
@@ -25,7 +31,7 @@ const Event = props => {
           </span>
         </div>
         <div>
-          <span> Sat, Feb 22 </span>
+          <span> {date} </span>
         </div>
         <div>
           <span class="text-base text-gray-700"> 1599 interested </span>
