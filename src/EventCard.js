@@ -20,7 +20,7 @@ const Event = props => {
       <img className="w-full" src={img} />
       <div class="px-6 py-4">
         <div className="mb-2 text-xl font-bold">
-          <span className="inline-block font-semibold text-gray-700">
+          <span className="inline-block w-full font-semibold text-gray-700 truncate whitespace-no-wrap">
             {name}
           </span>
         </div>

@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import Event from "./EventCard";
 import Navigation from "./Navigation";
 import EventModal from "./EventModal";
+import Tag from "./FilterTag";
 
 // // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
@@ -46,7 +47,7 @@ const Layout = () => {
   if (error) return <p>Error :(</p>;
 
   return (
-    <>
+    <div className="content-center justify-center">
       <Navigation />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
@@ -56,26 +57,13 @@ const Layout = () => {
         </div>
         <div className="fixed absolute right-0 w-64">
           <ul className="fixed flex flex-col">
-            <li className="flex-1">
-              <button className="inline-block px-3 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-                #movies
-              </button>
-            </li>
-            <li className="flex-1">
-              <button className="inline-block px-3 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-                #docfilms
-              </button>
-            </li>
-            <li className="flex-1 ">
-              <button className="inline-block px-3 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-                #haventseenityet
-              </button>
-            </li>
+            <Tag name="testing123" />
+            <Tag name="testing456" />
           </ul>
         </div>
       </div>
       <EventModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
-    </>
+    </div>
   );
 };
 
