@@ -95,23 +95,26 @@ const Layout = () => {
             />
           ))}
         </div>
-        <div className="fixed absolute right-0 w-64">
-          <ul className="fixed flex flex-col">
-            {tagObj.data.tags.map((tag, idx) => {
-              return (
-                <Tag
-                  key={idx}
-                  isActive={tag == activeTag}
-                  name={tag}
-                  onClick={e => {
-                    e.preventDefault();
-                    setActiveTag(tag == activeTag ? null : tag);
-                    setEvents([]);
-                  }}
-                />
-              );
-            })}
-          </ul>
+        <div className="fixed right-0 w-64 text-xl">
+          <div className="fixed font-bold text-red-800">Tags</div>
+          <div className="mt-10">
+            <ul className="fixed flex flex-col">
+              {tagObj.data.tags.map((tag, idx) => {
+                return (
+                  <Tag
+                    key={idx}
+                    isActive={tag == activeTag}
+                    name={tag}
+                    onClick={e => {
+                      e.preventDefault();
+                      setActiveTag(tag == activeTag ? null : tag);
+                      setEvents([]);
+                    }}
+                  />
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
       {modalIsOpen ? (
