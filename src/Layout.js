@@ -16,6 +16,7 @@ const ALL_EVENTS = gql`
       id
       name
       tags
+      image_url
       time {
         start
         end
@@ -30,6 +31,7 @@ const EVENTS_BY_TAG = gql`
       id
       name
       tags
+      image_url
       time {
         start
         end
@@ -69,7 +71,7 @@ const Layout = () => {
   // TODO: render a loading icon
   if (loading || tagObj.loading) return <p>Loading...</p>;
   // TODO: render something better
-  if (error || tagObj.error) return <p>Error :(</p>;
+  if (error || tagObj.error) return <p>Error: {error.toString()} </p>;
   if (events.length == 0) {
     setEvents(data.eventsByTags ? data.eventsByTags : data.events);
   }
@@ -79,11 +81,12 @@ const Layout = () => {
       <Navigation />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
-          {events.map(({ name, id, tags }) => (
+          {events.map(({ name, id, tags, image_url }) => (
             <Event
               key={id}
               name={name}
               tags={tags}
+              image={image_url}
               onClick={_ => {
                 openModal();
                 console.log("ONCLICKEVENT");
@@ -98,10 +101,11 @@ const Layout = () => {
               return (
                 <Tag
                   key={idx}
+                  isActive={tag == activeTag}
                   name={tag}
                   onClick={e => {
                     e.preventDefault();
-                    setActiveTag(tag);
+                    setActiveTag(tag == activeTag ? null : tag);
                     setEvents([]);
                   }}
                 />
