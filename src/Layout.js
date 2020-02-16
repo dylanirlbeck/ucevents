@@ -16,6 +16,7 @@ const ALL_EVENTS = gql`
       name
       tags
       description
+      image_url
       time {
         start
         end
@@ -30,6 +31,7 @@ const EVENTS_BY_TAG = gql`
       name
       tags
       description
+      image_url
       time {
         start
         end
@@ -81,11 +83,12 @@ const Layout = () => {
       <Navigation />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
-          {events.map(({ name, tags }) => (
+          {events.map(({ name, tags, image_url }) => (
             <Event
               key={name}
               name={name}
               tags={tags}
+              image={image_url}
               onClick={_ => setIsOpen(true)}
             />
           ))}
