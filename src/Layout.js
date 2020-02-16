@@ -80,10 +80,11 @@ const Layout = () => {
       <Navigation />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
-          {events.map(({ name, id, tags, image_url }) => (
+          {events.map(({ name, time, id, tags, image_url }) => (
             <Event
               key={id}
               name={name}
+              date={new Date(1000 * time.start).toDateString()}
               tags={tags}
               image={image_url}
               onClick={_ => {

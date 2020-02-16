@@ -63,7 +63,7 @@ const EventModal = props => {
                 </p>
                 <div className="mt-3">
                   <p className="font-bold text-gray-700 text-md">
-                    {new Date(data.event.time.start).toDateString()}
+                    {new Date(1000 * data.event.time.start).toDateString()}
                   </p>
                 </div>
               </div>

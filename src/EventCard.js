@@ -12,7 +12,7 @@ const Tag = props => {
 
 const Event = props => {
   // Destructure props
-  const { name, tags, image, onClick } = props;
+  const { name, tags, date, image, onClick } = props;
   return (
     <div
       onClick={onClick}
@@ -31,7 +31,7 @@ const Event = props => {
           </span>
         </div>
         <div>
-          <span> Sat, Feb 22 </span>
+          <span> {date} </span>
         </div>
         <div>
           <span class="text-base text-gray-700"> 1599 interested </span>
