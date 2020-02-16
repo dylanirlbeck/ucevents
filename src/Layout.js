@@ -1,14 +1,17 @@
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import Modal from "react-modal";
 import Event from "./EventCard";
 import Navigation from "./Navigation";
 import EventModal from "./EventModal";
+import SubmitModal from "./SubmitModal";
 import Tag from "./FilterTag";
 
 // // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
+
+//const CREAT_EVENT = gql``;
 
 const ALL_EVENTS = gql`
   {
@@ -47,6 +50,7 @@ const ALL_TAGS = gql`
 `;
 
 const Layout = () => {
+  const [submitModalIsOpen, setSubmitModalIsOpen] = React.useState(false);
   const [selectedEvent, setSelectedEvent] = React.useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [activeTag, setActiveTag] = React.useState(null);
@@ -58,6 +62,10 @@ const Layout = () => {
   const closeModal = () => {
     setIsOpen(false);
     setSelectedEvent(null);
+  };
+
+  const closeSubmitModal = () => {
+    setSubmitModalIsOpen(false);
   };
 
   const document = activeTag == null ? ALL_EVENTS : EVENTS_BY_TAG;
@@ -77,7 +85,7 @@ const Layout = () => {
   }
   return (
     <div className="content-center justify-center">
-      <Navigation />
+      <Navigation onClick={_ => setSubmitModalIsOpen(true)} />
       <div className="container flex">
         <div className="px-20 mx-4 my-3 grid grid-cols-3 gap-4 row-gap-4">
           {events.map(({ name, time, id, tags, image_url }) => (
@@ -127,6 +135,11 @@ const Layout = () => {
         React.null
       )}
       }
+      {submitModalIsOpen ? (
+        <SubmitModal modalIsOpen={true} closeModal={closeSubmitModal} />
+      ) : (
+        React.null
+      )}
     </div>
   );
 };

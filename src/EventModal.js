@@ -74,7 +74,7 @@ const EventModal = props => {
           </div>
           <div className="sticky bottom-0 z-10 flex flex-row justify-center w-full p-4 rounded text-md">
             <button
-              className="flex w-20 px-5 py-1 text-white bg-red-800 border border-red-800 rounded l-0 hover:bg-red-900"
+              className="flex w-20 px-5 py-1 font-semibold text-white bg-red-800 border border-red-800 rounded l-0 hover:bg-red-900"
               onClick={closeModal}>
               Done
             </button>
