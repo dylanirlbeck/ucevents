@@ -63,10 +63,7 @@ const EventModal = props => {
                 </p>
                 <div className="mt-3">
                   <p className="font-bold text-gray-700 text-md">
-                    Start: {new Date(data.event.time.start).toDateString()}
-                  </p>
-                  <p className="font-bold text-gray-700 text-md">
-                    End: {new Date(data.event.time.end).toDateString()}
+                    {new Date(data.event.time.start).toDateString()}
                   </p>
                 </div>
               </div>
@@ -75,7 +72,7 @@ const EventModal = props => {
           <div className="z-10">
             <AttendForm />
           </div>
-          <div className="sticky bottom-0 z-10 flex flex-row justify-center w-full p-4 border rounded text-md">
+          <div className="sticky bottom-0 z-10 flex flex-row justify-center w-full p-4 rounded text-md">
             <button
               className="flex w-20 px-5 py-1 text-white bg-red-800 border border-red-800 rounded l-0 hover:bg-red-900"
               onClick={closeModal}>
