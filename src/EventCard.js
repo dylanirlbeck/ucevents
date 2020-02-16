@@ -1,27 +1,38 @@
 import React from "react";
 import img from "./parasite.png";
 
-const Event = () => {
+const Tag = props => {
+  const { name } = props;
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+      {name}
+    </span>
+  );
+};
+
+const Event = props => {
+  // Destructure props
+  const { name, tags, onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      className="max-w-sm overflow-hidden rounded shadow-lg hover:bg-red-200">
       <img className="w-full" src={img} />
-      <div>
-        <div>
-          <span class="inline-block text-gray-700 font-semibold">
-            Megascreening! Parasite by Bon...
+      <div class="px-6 py-4">
+        <div className="mb-2 text-xl font-bold">
+          <span className="inline-block font-semibold text-gray-700">
+            {name}
           </span>
         </div>
         <div>
-          <span class="inline-block text-gray-700"> Sat, Feb 22 </span>
+          <span> Sat, Feb 22 </span>
         </div>
         <div>
-          <span class="inline-block text-gray-700"> 1599 interested </span>
+          <span class="text-base text-gray-700"> 1599 interested </span>
         </div>
-      </div>
-      <div>
-        <button class="bg-transparent hover:bg-blue-400 text-gray-500 font-semibold hover:text-white py-0.9 px-2 border border-gray-500 hover:border-transparent rounded">
-          Interested
-        </button>
+        {tags.map(tag => (
+          <Tag name={tag} />
+        ))}
       </div>
     </div>
   );
