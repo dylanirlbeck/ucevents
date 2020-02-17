@@ -1,3 +1,9 @@
+# UCEvents
+
+This was a project made for Uncommon Hacks 2020, the University of Chicago's annual hackathon. Feel free to read our Devpost submission [here](https://devpost.com/software/ucevents-qmlcfz)!
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
