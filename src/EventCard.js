@@ -12,7 +12,7 @@ const Tag = props => {
 
 const Event = props => {
   // Destructure props
-  const { name, tags, date, image, onClick } = props;
+  const { name, tags, date, location, image, onClick } = props;
   return (
     <div
       onClick={onClick}
@@ -34,7 +34,7 @@ const Event = props => {
           <span> {date} </span>
         </div>
         <div>
-          <span class="text-base text-gray-700"> 1599 interested </span>
+          <span class="text-base text-gray-700"> {location} </span>
         </div>
         {tags.map(tag => (
           <Tag name={tag} />
